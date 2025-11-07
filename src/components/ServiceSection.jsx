@@ -15,21 +15,20 @@ export default function ServiceSection({ title, description, images }) {
       <p className="text-center text-gray-600 mb-8 text-body">{description}</p>
 
       {/* Photo Gallery */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         {images.map((img, index) => (
           <motion.div
             key={index}
             className="overflow-hidden rounded-lg shadow-lg"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            transition={{ delay: index * 0.1, duration: 0.5 ,type: "spring", stiffness: 300}}
           >
             <img
               src={img}
               alt={`${title} ${index + 1}`}
-              className="w-[30vw] h-[30vh] object-contain"
+              className="w-full h-[30vh] object-contain"
             />
           </motion.div>
         ))}
