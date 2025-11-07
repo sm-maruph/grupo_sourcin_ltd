@@ -92,15 +92,15 @@ export default function Navbar() {
   return (
     <nav className="relative flex items-center justify-between px-4 md:px-36 py-3 bg-primary dark:bg-accent shadow sticky top-0 z-50">
       {/* Left: Logo + Company Name */}
-      <div className="flex-1 flex items-center space-x-3">
+      <div className="flex-1 flex items-center space-x-3 whitespace-nowrap">
         <img
           src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/logo.jpeg"
           alt="Company Logo"
-          className="w-10 h-10 rounded-full object-contain"
+          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-contain"
         />
         <Link
           to="/"
-          className="text-2xl font-bold text-heading dark:text-heading cursor-pointer select-none"
+          className="text-lg sm:text-xl md:text-2xl font-bold text-heading dark:text-heading cursor-pointer select-none"
         >
           Grupo Sourcing Ltd
         </Link>
@@ -123,9 +123,7 @@ export default function Navbar() {
     after:block after:h-[2px] after:bg-current after:origin-left after:scale-x-0
     after:transition-transform after:duration-200 after:ease-out
     hover:after:scale-x-100"
-              onMouseEnter={() =>
-                link.dropdown && setDropdownOpen(link.name)
-              }
+              onMouseEnter={() => link.dropdown && setDropdownOpen(link.name)}
               onMouseLeave={() => link.dropdown && setDropdownOpen(null)}
               onClick={() => handleNavClick(link.name)}
             >
@@ -208,13 +206,12 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       <div
-  id="mobile-menu"
-  ref={menuRef}
-  className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-screen overflow-y-auto bg-white dark:bg-gray-900 shadow-lg z-50 transform transition-transform duration-300 flex flex-col box-border
+        id="mobile-menu"
+        ref={menuRef}
+        className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-screen overflow-y-auto bg-white dark:bg-gray-900 shadow-lg z-50 transform transition-transform duration-300 flex flex-col box-border
     ${open ? "translate-x-0" : "translate-x-full"}
   `}
->
-
+      >
         <ul className="flex flex-col pt-20 px-6 gap-4 text-gray-700 dark:text-gray-300 text-lg">
           {navLinks.map((link) => (
             <li key={link.name} className="flex flex-col">
