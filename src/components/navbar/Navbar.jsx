@@ -208,12 +208,13 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       <div
-        id="mobile-menu"
-        ref={menuRef}
-        className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-full bg-white dark:bg-gray-900 shadow-lg z-50 transform transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+  id="mobile-menu"
+  ref={menuRef}
+  className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-screen overflow-y-auto bg-white dark:bg-gray-900 shadow-lg z-50 transform transition-transform duration-300 flex flex-col box-border
+    ${open ? "translate-x-0" : "translate-x-full"}
+  `}
+>
+
         <ul className="flex flex-col pt-20 px-6 gap-4 text-gray-700 dark:text-gray-300 text-lg">
           {navLinks.map((link) => (
             <li key={link.name} className="flex flex-col">
@@ -284,7 +285,7 @@ export default function Navbar() {
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-40 md:hidden"
+          className="relative inset-0 z-40 bg-black bg-opacity-40 md:hidden"
           onClick={() => setOpen(false)}
         />
       )}
