@@ -5,12 +5,12 @@
 
 /* 🌤 Light Mode Palette */
 :root {
-  --color-primary: #9AA6B2;   /* Blue 600 */
+  --color-primary: #dbe3eb;   /* Blue 600 */
   --color-secondary: #BCCCDC; /* Emerald 500 */
   --color-accent: #D9EAFD;    /* Amber 500 */
   --color-neutral: #F8FAFC;   /* Gray 100 */
   --color-hover: #78acff;    /* Gray 700 */
-
+  --color-h: #ffffff;    /* Gray 700 */
   --color-text-primary: #111827;  /* Gray 900 */
   --color-text-secondary: #374151; /* Gray 700 */
 
@@ -20,11 +20,13 @@
 
 /* 🌙 Dark Mode Palette */
 .dark {
-  --color-primary: #1D1616;   /* Blue 400 */
+  --color-primary: #000000;   /* Blue 400 */
   --color-secondary: #8E1616; /* Emerald 400 */
-  --color-accent: #232121;    /* Amber 400 */
+  --color-accent: #2f2b2b;    /* Amber 400 */
   --color-neutral: #e5d5d5;   /* Gray 800 */
   --color-hover: #78acff;    /* Gray 700 */
+  --color-h: #040000;    /* Gray 700 */
+
   --color-text-primary: #F9FAFB;  /* Gray 50 */
   --color-text-secondary: #D1D5DB; /* Gray 300 */
 

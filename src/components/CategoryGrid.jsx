@@ -64,7 +64,7 @@ export default function CategoryShowrooms() {
   return (
     <section className="bg-accent py-12 px-4 md:px-8">
       <h1 className="text-2xl md:text-2xl text-center text-heading mb-10">
-        OUR SERVICES
+        OUR STRENGTH
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">

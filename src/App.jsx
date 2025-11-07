@@ -12,10 +12,13 @@ import Compliance from "./pages/Compliance";
 // import Services from "./pages/Services";
 import Footer from "./components/Footer";
 import TopStrip from "./components/navbar/TopStrip"; // optional if you have one
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col bg-neutral dark:bg-gray-950">
         <TopStrip
           phone="+88 01711556131"
@@ -41,6 +44,7 @@ function App() {
             <Route path="/compliance" element={<Compliance />} />
           </Routes>
         </main>
+        <FloatingWhatsApp />
 
         <Footer />
       </div>

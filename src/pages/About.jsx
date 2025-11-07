@@ -4,9 +4,9 @@ import PartnersSection from "../components/others/PartnersSection";
 import StrengthSection from "../components/others/StrengthSection";
 export default function About() {
   return (
-    <div className="font-sans text-body bg-accent dark:bg-[#000B58]">
+    <div className="font-sans text-body bg-accent dark:bg-[#000B58] overflow-x-hidden overflow-y-visible relative">
       {/* 🟦 Banner Section */}
-      <section className="relative h-[50vh] flex items-center justify-center bg-primary-gradient text-center text-white overflow-hidden">
+      <section className="relative h-[50vh] flex items-center justify-center bg-primary-gradient text-center text-white overflow-visible">
         <img
           src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/banners/b3.png"
           alt="About Banner"
@@ -44,7 +44,8 @@ export default function About() {
                 <strong>YEAR OF ESTABLISHMENT:</strong> 2005
               </p>
               <p>
-                <strong>ADDRESS:</strong> House 256, Road: 03 (East Side) DOHS Baridhara, Dhaka-1206, Bangladesh.
+                <strong>ADDRESS:</strong> House 256, Road: 03 (East Side) DOHS
+                Baridhara, Dhaka-1206, Bangladesh.
               </p>
             </div>
             <div className="space-y-3 backdrop-blur-xl border border-white/20 dark:border-neutral rounded-2xl shadow-xl overflow-hidden p-6 ">
@@ -208,7 +209,7 @@ export default function About() {
           </p>
         </motion.div>
       </div>
-      
+
       {/* 🌱 SUSTAINABILITY SECTION (aligned + responsive) */}
       <div className="max-w-screen-xl mx-auto px-6 md:px-20 py-16 bg-accent">
         <div className="flex flex-col md:flex-row items-start md:items-center gap-10">
@@ -224,7 +225,6 @@ export default function About() {
             <h2 className="hidden md:block text-2xl md:text-3xl font-bold tracking-widest text-heading -rotate-90 transform origin-center whitespace-nowrap">
               SUSTAINABILITY
             </h2>
-
           </motion.div>
 
           {/* CENTER — image + three-circle collage */}
@@ -235,9 +235,6 @@ export default function About() {
             viewport={{ once: true }}
             className="md:w-4/12 w-full flex flex-col items-center"
           >
-            
-
-            
             <div className="relative w-64 h-64 md:w-72 md:h-72 flex items-center justify-center">
               {/* Environment circle (left) */}
               <div
@@ -280,8 +277,6 @@ export default function About() {
                 }}
                 aria-hidden
               />
-
-              
             </div>
           </motion.div>
 
@@ -405,7 +400,7 @@ export default function About() {
           </div>
         </div>
       </motion.section>
-        <PartnersSection />
+      <PartnersSection />
     </div>
   );
 }

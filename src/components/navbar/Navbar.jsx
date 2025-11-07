@@ -6,7 +6,7 @@ const navLinks = [
   { name: "About", path: "/about" },
   { name: "Contact Us", path: "/contact" },
   {
-    name: "Services",
+    name: "Our Strength",
     dropdown: [
       { label: "WOVEN SHOWROOM", path: "/services/woven" },
       { label: "KNIT SHOWROOM", path: "/services/knit" },
@@ -90,7 +90,7 @@ export default function Navbar() {
   const handleNavClick = () => setOpen(false);
 
   return (
-    <nav className="relative flex items-center justify-between px-4 md:px-36 py-3 bg-primary dark:bg-accent shadow sticky top-0 z-50">
+    <nav className="relative flex items-center justify-between px-4 md:px-36 py-2 bg-primary dark:bg-accent shadow sticky top-0 z-50">
       {/* Left: Logo + Company Name */}
       <div className="flex-1 flex items-center space-x-3 whitespace-nowrap">
         <img
@@ -167,15 +167,32 @@ export default function Navbar() {
       <div className="flex-1 flex justify-end items-center">
         <div className="hidden md:block mr-3">
           <button
+            onClick={() => setDarkMode((prev) => !prev)}
             aria-label="Toggle Dark Mode"
-            onClick={() => setDarkMode((m) => !m)}
-            className="relative w-14 h-8 rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300 p-1"
+            className="relative w-16 h-8 border border-white rounded-full transition-colors duration-500
+             bg-gradient-to-r from-yellow-300 to-orange-400 dark:from-gray-700 dark:to-gray-900
+             shadow-lg flex items-center px-1 cursor-pointer hover:shadow-xl focus:outline-none"
           >
-            <span
-              className={`absolute top-1 left-1 w-6 h-6 rounded-full bg-yellow-400 dark:bg-gray-900 shadow-md transform transition-transform duration-300 ${
-                darkMode ? "translate-x-6" : ""
-              }`}
-            />
+            {/* Slider */}
+            <div
+              className={`absolute top-1 left-1 w-6 h-6 rounded-full bg-neutral
+                shadow-md transform transition-all duration-500 flex items-center justify-center
+                ${darkMode ? "translate-x-8 rotate-[360deg]" : "rotate-0"}`}
+            >
+              {/* Sun / Moon icon */}
+              <span className="text-sm">{darkMode ? "🌙" : "☀️"}</span>
+            </div>
+
+            {/* Subtle glowing effect */}
+            <div
+              className={`absolute top-0 left-0 w-full h-full rounded-full pointer-events-none
+                transition-opacity duration-500
+                ${
+                  darkMode
+                    ? "bg-yellow-200/30 dark:bg-gray-900/40"
+                    : "bg-yellow-100/50"
+                }`}
+            ></div>
           </button>
         </div>
 
@@ -208,7 +225,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         ref={menuRef}
-        className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-screen overflow-y-auto bg-white dark:bg-gray-900 shadow-lg z-50 transform transition-transform duration-300 flex flex-col box-border
+        className={`fixed top-0 right-0 w-11/12 sm:w-2/3 max-w-xs h-screen overflow-y-auto bg-primary dark:bg-primary shadow-lg z-50 transform transition-transform duration-300 flex flex-col box-border
     ${open ? "translate-x-0" : "translate-x-full"}
   `}
       >
@@ -264,15 +281,32 @@ export default function Navbar() {
                 Theme
               </span>
               <button
+                onClick={() => setDarkMode((prev) => !prev)}
                 aria-label="Toggle Dark Mode"
-                onClick={() => setDarkMode((m) => !m)}
-                className="relative w-14 h-8 rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300 p-1"
+                className="relative w-16 h-8 rounded-full transition-colors duration-500
+             bg-gradient-to-r from-yellow-300 to-orange-400 dark:from-gray-700 dark:to-gray-900
+             shadow-lg flex items-center px-1 cursor-pointer hover:shadow-xl focus:outline-none"
               >
-                <span
-                  className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-yellow-400 dark:bg-gray-900 shadow-md transform transition-transform duration-300 ${
-                    darkMode ? "translate-x-6" : ""
-                  }`}
-                />
+                {/* Slider */}
+                <div
+                  className={`absolute top-1 left-1 w-6 h-6 rounded-full bg-white dark:bg-yellow-400
+                shadow-md transform transition-all duration-500 flex items-center justify-center
+                ${darkMode ? "translate-x-8 rotate-[360deg]" : "rotate-0"}`}
+                >
+                  {/* Sun / Moon icon */}
+                  <span className="text-sm">{darkMode ? "🌙" : "☀️"}</span>
+                </div>
+
+                {/* Subtle glowing effect */}
+                <div
+                  className={`absolute top-0 left-0 w-full h-full rounded-full pointer-events-none
+                transition-opacity duration-500
+                ${
+                  darkMode
+                    ? "bg-yellow-200/30 dark:bg-gray-900/40"
+                    : "bg-yellow-100/50"
+                }`}
+                ></div>
               </button>
             </div>
           </li>
