@@ -90,17 +90,20 @@ export default function Navbar() {
   const handleNavClick = () => setOpen(false);
 
   return (
-    <nav className="relative flex items-center justify-between px-4 md:px-36 py-2 bg-primary dark:bg-accent shadow sticky top-0 z-50">
+    <nav className="relative flex items-center justify-between 
+  px-2 sm:px-4 md:px-6 lg:px-2 xl:px-10 py-2 
+  bg-primary dark:bg-accent shadow sticky top-0 z-50">
+
       {/* Left: Logo + Company Name */}
-      <div className="flex-1 flex items-center space-x-3 whitespace-nowrap">
+      <div className="flex-1 flex items-center space-x-3 whitespace-wrap">
         <img
           src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/logo.jpeg"
           alt="Company Logo"
-          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full object-contain"
+          className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full object-contain"
         />
         <Link
           to="/"
-          className="text-lg sm:text-xl md:text-2xl font-bold text-heading dark:text-heading cursor-pointer select-none"
+          className="text-lg sm:text-xl md:text-xl lg:text-xl xl:text-2xl font-bold text-heading dark:text-heading cursor-pointer select-none"
         >
           Grupo Sourcing Ltd
         </Link>
@@ -109,14 +112,14 @@ export default function Navbar() {
       {/* Center: Desktop Nav */}
       <div className="flex-1 hidden md:flex justify-center">
         <ul
-          className="flex items-center space-x-6 md:space-x-8 text-heading dark:text-heading flex-nowrap"
+          className="flex items-center space-x-1 md:space-x-2 lg:space-3 xl:space-4 text-heading dark:text-heading flex-nowrap"
           role="menubar"
           aria-label="Primary"
         >
           {navLinks.map((link) => (
             <li
               key={link.name}
-              className="group relative cursor-pointer px-3 py-2 rounded-md transition-colors duration-150
+              className="group relative cursor-pointer px-1 md:px-2 lg:px-3 xl:px-4 py-2 rounded-md transition-colors duration-150
     focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500
     whitespace-nowrap hover:text-text-hover
     after:content-[''] after:absolute after:left-3 after:right-3 after:bottom-1
