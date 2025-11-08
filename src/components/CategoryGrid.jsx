@@ -1,65 +1,96 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const CACHE_KEY = "all_services_cache";
+const CACHE_EXPIRY = 1000 * 60 * 60; // 1 hour in milliseconds
 
 export default function CategoryShowrooms() {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const categories = [
-    {
-      id: 1,
-      title: "WOVEN SHOWROOM",
-      images: [
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ws/ws1.webp", // image 1
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ws/ws2.webp", // image 2
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ws/ws3.webp", // image 3
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ws/ws4.webp" // image 4
-      ],
-    },
-    {
-      id: 2,
-      title: "KNIT SHOWROOM",
-      images: [
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ks/ks1.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ks/ks2.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ks/ks3.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ks/ks4.webp",
-      ],
-    },
-    {
-      id: 3,
-      title: "SAMPLE SECTION",
-      images: [
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss1.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss2.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss3.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss4.webp",
-      ],
-    },
-    {
-      id: 4,
-      title: "MERCHANDISING",
-      images: [
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/m/m1.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/m/m2.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/m/m3.webp",
-        "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/m/m4.webp",
-      ],
-    },
+  const [allServices, setAllServices] = useState([]);
+  const [imageIndexes, setImageIndexes] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const categoryNames = [
+    "WOVEN SHOWROOM",
+    "KNIT SHOWROOM",
+    "SAMPLE SECTION",
+    "MERCHANDISING",
   ];
 
-  // Each category will have its own image index
-  const [imageIndexes, setImageIndexes] = useState(categories.map(() => 0));
-
-  // Auto-slide each category’s image every 3 seconds
   useEffect(() => {
-    const timer = setInterval(() => {
-      setImageIndexes((prev) =>
-        prev.map((index, i) =>
-          (index + 1) % categories[i].images.length
-        )
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      const now = new Date().getTime();
+
+      // Check if cache is expired
+      if (now - parsed.timestamp < CACHE_EXPIRY) {
+        console.log("Loaded services from cache:", parsed.data);
+        setAllServices(parsed.data);
+
+        const initialIndexes = {};
+        categoryNames.forEach((cat) => (initialIndexes[cat] = 0));
+        setImageIndexes(initialIndexes);
+        setLoading(false);
+        return;
+      } else {
+        // Remove expired cache
+        localStorage.removeItem(CACHE_KEY);
+      }
+    }
+
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      console.log("Fetching all services from API...");
+      const res = await axios.get(`${API_BASE}/services`);
+      console.log("Raw API response:", res.data);
+
+      setAllServices(res.data);
+
+      // Save with timestamp
+      localStorage.setItem(
+        CACHE_KEY,
+        JSON.stringify({ data: res.data, timestamp: new Date().getTime() })
       );
+
+      const initialIndexes = {};
+      categoryNames.forEach((cat) => (initialIndexes[cat] = 0));
+      setImageIndexes(initialIndexes);
+    } catch (err) {
+      console.error("Failed to fetch services:", err);
+      setAllServices([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (allServices.length === 0) return;
+
+    const timer = setInterval(() => {
+      setImageIndexes((prev) => {
+        const newIndexes = { ...prev };
+        categoryNames.forEach((cat) => {
+          const catImages = allServices
+            .filter((s) => s.category?.toLowerCase() === cat.toLowerCase())
+            .map((s) => s.image_url)
+            .filter(Boolean);
+          if (catImages.length > 0) {
+            newIndexes[cat] = (newIndexes[cat] + 1) % catImages.length;
+          }
+        });
+        return newIndexes;
+      });
     }, 3000);
+
     return () => clearInterval(timer);
-  }, [categories]);
+  }, [allServices]);
+
+  if (loading || allServices.length === 0) return null;
 
   return (
     <section className="bg-accent py-12 px-4 md:px-8">
@@ -68,46 +99,56 @@ export default function CategoryShowrooms() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-        {categories.map((category, i) => (
-          <motion.div
-            key={category.id}
-            className="relative rounded-2xl shadow-lg overflow-hidden bg-none border border-white/20 dark:border-neutral hover:shadow-2xl transition-transform duration-300"
-            whileHover={{ scale: 1.03 }}
-          >
-            <div className="relative w-full h-56 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={category.images[imageIndexes[i]]}
-                  src={category.images[imageIndexes[i]]}
-                  alt={category.title}
-                  className="w-full h-full object-cover"
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -40 }}
-                  transition={{ duration: 0.6 }}
-                />
-              </AnimatePresence>
-            </div>
+        {categoryNames.map((catName) => {
+          const catServices = allServices.filter(
+            (s) => s.category?.toLowerCase() === catName.toLowerCase()
+          );
+          const images = catServices.map((s) => s.image_url).filter(Boolean);
+          const currentIndex = imageIndexes[catName] || 0;
 
-            <div className="absolute bottom-0 w-full bg-primary-gradient bg-opacity-40 py-3 text-center">
-              <h2 className="text-lg font-semibold text-heading">
-                {category.title}
-              </h2>
-            </div>
+          if (images.length === 0) return null;
 
-            {/* Small dots for each image inside category */}
-            <div className="absolute bottom-2 right-3 flex gap-1">
-              {category.images.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2 h-2 rounded-full ${
-                    imageIndexes[i] === idx ? "bg-white" : "bg-gray-400"
-                  }`}
-                ></div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+          return (
+            <motion.div
+              key={catName}
+              className="relative rounded-2xl shadow-lg overflow-hidden bg-none border border-white/20 dark:border-neutral hover:shadow-2xl transition-transform duration-300"
+              whileHover={{ scale: 1.03 }}
+            >
+              <div className="relative w-full h-56 overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={images[currentIndex]}
+                    src={images[currentIndex]}
+                    alt={catName}
+                    className="w-full h-full object-cover"
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.6 }}
+                    onError={(e) =>
+                      console.error("Image failed to load:", e.currentTarget.src)
+                    }
+                  />
+                </AnimatePresence>
+              </div>
+
+              <div className="absolute bottom-0 w-full bg-primary-gradient bg-opacity-40 py-3 text-center">
+                <h2 className="text-lg font-semibold text-heading">{catName}</h2>
+              </div>
+
+              <div className="absolute bottom-2 right-3 flex gap-1">
+                {images.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-2 h-2 rounded-full ${
+                      currentIndex === idx ? "bg-white" : "bg-gray-400"
+                    }`}
+                  ></div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
