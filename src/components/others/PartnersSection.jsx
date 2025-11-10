@@ -28,8 +28,8 @@ export default function PartnersSection() {
   return (
     <section className="bg-accent py-16">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-heading">
-          OUR <span className="text-secondary">PARTNERS</span>
+        <h2 className="text-2xl md:text-2xl text-center text-heading mb-10">
+          OUR PARTNERS
         </h2>
       </div>
 

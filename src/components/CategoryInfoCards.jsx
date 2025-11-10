@@ -37,9 +37,9 @@ export default function CategoryInfoCards() {
     <section className="w-full py-12 px-6 bg-accent">
       {/* Header Section */}
       <div className="max-w-6xl mx-auto text-center mb-16">
-        <h2 className="text-4xl font-heading font-bold text-heading dark:text-heading">
+        <h1 className="text-2xl md:text-2xl text-center text-heading mb-10">
           Company Overview
-        </h2>
+        </h1>
         <p className="mt-4 text-body dark:text-body text-lg font-sans max-w-2xl mx-auto">
           Discover what makes us stand out — our products, our services, and our
           strength in innovation, quality, and collaboration.
@@ -63,7 +63,7 @@ export default function CategoryInfoCards() {
 
             {/* Card Content */}
             <div className="p-8 flex flex-col h-full">
-              <h3 className="font-heading text-2xl mb-6 text-heading dark:text-heading text-center tracking-wide">
+              <h3 className="font-heading text-xl mb-6 text-heading dark:text-heading text-center tracking-wide">
                 {item.title}
               </h3>
               <ul className="text-left text-body dark:text-body space-y-3 font-sans flex-1">

@@ -3,11 +3,11 @@ import React from "react";
 const TestimonialCEO = () => {
   return (
     <section className="min-h-[45vh] flex flex-col justify-center items-center text-center px-6 py-6 bg-primary-gradient">
-      <h1 className="text-3xl md:text-4xl font-heading font-bold text-heading mb-6">
+      <h1 className="text-2xl md:text-2xl  text-center text-heading mb-10">
         MESSAGE FROM
       </h1>
 
-      <h2 className="text-2xl md:text-2xl font-semibold text-heading mb-8">
+      <h2 className="text-2xl md:text-2xl text-heading mb-8">
         CEO
       </h2>
 

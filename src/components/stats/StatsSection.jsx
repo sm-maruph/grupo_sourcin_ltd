@@ -70,9 +70,9 @@ export default function StatsSection({ animate = true, duration = 4000 }) {
     transition-colors duration-300
   "
     >
-      <h2 className="text-sm uppercase tracking-widest mb-6">
+      <h1 className="text-2xl md:text-2xl text-center text-heading mb-10">
         Latest Collection
-      </h2>
+      </h1>
 
       <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 font-semibold">
         {rawStats.map(({ label, suffix }, i) => {
