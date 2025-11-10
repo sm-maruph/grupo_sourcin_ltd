@@ -1,4 +1,4 @@
-import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 export default function SocialLinks() {
   return (
@@ -14,7 +14,7 @@ export default function SocialLinks() {
       </a>
 
       <a
-        href="https://www.facebook.com"
+        href="https://www.facebook.com/share/1H1dx4T9rY/?mibextid=wwXIfr"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook"
@@ -24,13 +24,13 @@ export default function SocialLinks() {
       </a>
 
       <a
-        href="https://www.instagram.com"
+        href="https://www.linkedin.com/in/zamal-u-ahmed-0b866b7b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app "
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
         className="p-2 rounded-md text-pink-500 hover:bg-neutral hover:text-pink-400 transition duration-300 transform hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:text-pink-400 dark:hover:bg-neutral-dark"
       >
-        <FaInstagram className="w-5 h-5 md:w-6 md:h-6" />
+        <FaLinkedinIn className="w-5 h-5 md:w-6 md:h-6" />
       </a>
     </div>
   );

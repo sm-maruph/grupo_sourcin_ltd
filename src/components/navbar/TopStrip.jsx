@@ -123,7 +123,7 @@ export default function TopStrip({
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/zamal-u-ahmed-0b866b7b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1 rounded hover:bg-accent transition-colors"
@@ -133,7 +133,7 @@ export default function TopStrip({
               </a>
 
               <a
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/share/1H1dx4T9rY/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-1 rounded hover:bg-accent transition-colors"

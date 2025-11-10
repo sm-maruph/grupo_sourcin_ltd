@@ -20,7 +20,7 @@ export default function Footer() {
             <a href="/" className="inline-flex items-center gap-3 mb-3">
               <div className="flex items-center justify-center w-10 h-10 rounded-md bg-accent text-heading font-heading">
                 <img
-                  src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/logo.jpeg" // 🔗 Replace with your own logo URL
+                  src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/gsl_logo.png" // 🔗 Replace with your own logo URL
                   alt="Company Logo"
                   className="w-10 h-10 rounded-full object-contain"
                 />
@@ -42,25 +42,25 @@ export default function Footer() {
           <nav aria-label="Get started" className="flex flex-col gap-2">
             <h3 className="text-sm font-heading mb-2">Get Started</h3>
             <a
-              href="#"
+              href="services/knit"
               className="text-body text-sm hover:text-hover hover:underline"
             >
               Knit Showroom
             </a>
             <a
-              href="#"
+              href="/services/woven"
               className="text-body text-sm hover:text-hover hover:underline"
             >
               Woven Showroom
             </a>
             <a
-              href="#"
+              href="/services/sample"
               className="text-body text-sm hover:text-hover hover:underline"
             >
               Sample Section
             </a>
             <a
-              href="#"
+              href="/services/merchandising"
               className="text-body text-sm hover:text-hover hover:underline"
             >
              Merchandising
@@ -71,7 +71,7 @@ export default function Footer() {
           <nav aria-label="About" className="flex flex-col gap-2">
             <h3 className="text-sm font-heading mb-2">About</h3>
             <a
-              href="#"
+              href="contact"
               className="text-body text-sm hover:text-hover hover:underline"
             >
               Contact
@@ -83,17 +83,12 @@ export default function Footer() {
               Clients
             </a>
             <a
-              href="#"
+              href="compliance"
               className="text-body text-sm hover:text-hover hover:underline"
             >
-              Compliance
+              Compliance & Ethics
             </a>
-            <a
-              href="#"
-              className="text-body text-sm hover:text-hover hover:underline"
-            >
-              Ethics
-            </a>
+          
           </nav>
 
           {/* Column 4: Locate Us */}

@@ -95,9 +95,9 @@ export default function Navbar() {
   bg-primary dark:bg-accent shadow sticky top-0 z-50">
 
       {/* Left: Logo + Company Name */}
-      <div className="flex-1 flex items-center space-x-3 whitespace-wrap">
+      <div className="flex-1 flex items-center space-x-1 whitespace-wrap">
         <img
-          src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/logo.jpeg"
+          src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/logo/gsl_logo.png"
           alt="Company Logo"
           className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-full object-contain"
         />
