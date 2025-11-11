@@ -11,7 +11,7 @@ export default function Compliance() {
           className="w-full h-64 object-cover rounded-xl shadow-lg"
         />
         <img
-          src="https://thumbs.dreamstime.com/b/dhaka-bangladesh-february-women-work-ready-made-garment-factory-dhaka-bangladesh-february-ready-made-garment-industry-286367602.jpg"
+          src="https://apparelresources.com/wp-content/uploads/2022/07/Green-Factory-Award.jpg"
           alt="Garment factory workers"
           className="w-full h-64 object-cover rounded-xl shadow-lg"
         />
