@@ -1,132 +1,201 @@
 import React from "react";
+import { motion } from "framer-motion";
+import {
+  Baby,
+  Lock,
+  Gavel,
+  AlertTriangle,
+  Scale,
+  HeartHandshake,
+  Clock,
+  HandCoins,
+  Users,
+  Ban,
+  Building2,
+  ShieldCheck,
+  Leaf,
+} from "lucide-react";
 
 export default function Compliance() {
+  const points = [
+    {
+      title: "Child Labor",
+      icon: Baby,
+      text: "Use of child labor will not be tolerated. We will not work with business partners employing workers under 15 years of age or below the mandatory school age in the respective country.",
+    },
+    {
+      title: "Forced Labor",
+      icon: Lock,
+      text: "We will not engage with any factory or organization that uses forced or bonded labor.",
+    },
+    {
+      title: "Disciplinary Practices",
+      icon: Gavel,
+      text: "Factories must establish disciplinary procedures that comply with local laws. We prohibit any form of abuse, coercion, or corporal punishment.",
+    },
+    {
+      title: "Abusement & Harassment",
+      icon: AlertTriangle,
+      text: "Harassment or abasement of any kind is strictly prohibited according to buyer codes of conduct, our business ethics, and local laws.",
+    },
+    {
+      title: "Legal Requirements",
+      icon: Scale,
+      text: "All business partners must comply with applicable local laws governing their operations.",
+    },
+    {
+      title: "Ethical Standards",
+      icon: HeartHandshake,
+      text: "We collaborate with organizations whose ethical principles align with ours, ensuring integrity and respect.",
+    },
+    {
+      title: "Working Hours",
+      icon: Clock,
+      text: "We prefer partners adhering to a 60-hour workweek limit. Overtime must comply with local laws, and employees must receive one day off per week.",
+    },
+    {
+      title: "Wages & Benefits",
+      icon: HandCoins,
+      text: "Workers should be compensated as per prevailing law and receive all legally entitled benefits.",
+    },
+    {
+      title: "Freedom of Association",
+      icon: Users,
+      text: "We respect workers’ rights to join associations and participate in collective bargaining without discrimination or punishment.",
+    },
+    {
+      title: "Discrimination",
+      icon: Ban,
+      text: "Employment decisions should be based on skills only. Discrimination based on caste, creed, race, or religion will not be tolerated.",
+    },
+    {
+      title: "Unauthorized Subcontract",
+      icon: Building2,
+      text: "Unauthorized subcontracting is a zero-tolerance violation. No production may be subcontracted without prior approval.",
+    },
+    {
+      title: "Building & Fire Safety",
+      icon: ShieldCheck,
+      text: "Business partners must ensure building and fire safety per local laws and buyer requirements.",
+    },
+    {
+      title: "Health & Safety",
+      icon: ShieldCheck,
+      text: "We only engage with factories that maintain safe and healthy working environments for employees.",
+    },
+    {
+      title: "Environment",
+      icon: Leaf,
+      text: "Partners must ensure eco-friendly processes and comply with environmental laws, striving to exceed minimum standards.",
+    },
+  ];
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const card = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="bg-primary min-h-screen py-12 px-6 md:px-16 font-sans text-body">
-      {/* Image Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-        <img
-          src="https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss2.webp"
-          alt="Workers sewing garments"
-          className="w-full h-64 object-cover rounded-xl shadow-lg"
-        />
-        <img
-          src="https://apparelresources.com/wp-content/uploads/2022/07/Green-Factory-Award.jpg"
-          alt="Garment factory workers"
-          className="w-full h-64 object-cover rounded-xl shadow-lg"
-        />
-      </div>
-
-      {/* Text Section */}
-      <div className="bg-accent p-8 md:p-10 rounded-2xl shadow-lg leading-relaxed text-justify text-[15px] text-heading">
-        <p className="mb-6">
-          Our code is derived from the values and standards set by our
-          customers, the United Nations, more particularly the Declaration of
-          Human Rights and many of the ILO core conventions and local LAW.
+    <section className="bg-primary min-h-screen py-16 px-6 md:px-16 font-sans text-body">
+      {/* Animated Header Section */}
+      <motion.div
+        className="text-center mb-12"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="text-4xl font-bold text-heading mb-3">Compliance & Ethics</h1>
+        <p className="text-[16px] text-body/80 max-w-3xl mx-auto">
+          Guided by integrity and respect for human rights, our compliance principles ensure fairness, 
+          safety, and sustainability across every partnership.
         </p>
+      </motion.div>
 
-        <p className="mb-6">
-          It will be our earnest endeavour to meet all the aspects of our buyers’
-          code of conduct. We will only work with such factories which are
-          approved by our buyers.
+      {/* Image Grid with Motion */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={container}
+      >
+        {[
+          "https://kafjvkvzsdkofnzevohc.supabase.co/storage/v1/object/public/gsl/services/ss/ss2.webp",
+          "https://apparelresources.com/wp-content/uploads/2022/07/Green-Factory-Award.jpg",
+        ].map((src, i) => (
+          <motion.img
+            key={i}
+            src={src}
+            alt={`Compliance visual ${i + 1}`}
+            className="w-full h-64 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700"
+            variants={card}
+          />
+        ))}
+      </motion.div>
+
+      {/* Intro Text */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="bg-secondary p-6 md:p-8 rounded-2xl shadow-xl mb-14 text-[15px] text-heading leading-relaxed text-justify border border-primary/20"
+      >
+        <p>
+          Our compliance code draws from the United Nations’ values, the Declaration of Human Rights, 
+          ILO core conventions, and national labor laws. We only partner with factories that uphold the 
+          highest ethical, legal, and humanitarian standards.
         </p>
+      </motion.div>
 
-        <ul className="space-y-4">
-          <li>
-            <strong>Child labor:</strong> Use of Child labor will not be
-            tolerated. We will not work with such business partners who employ
-            workers lesser than 15 years of age. Further, no worker shall be
-            younger than the mandatory school going age in the respective
-            countries of operation. If the local law stipulates a higher minimum
-            age than 15 years, then the more stringent limit shall be
-            applicable.
-          </li>
-          <li>
-            <strong>Forced labor:</strong> We will not work with any factory or
-            organization which engages in forced or bonded labour.
-          </li>
-          <li>
-            <strong>Disciplinary practices:</strong> We expect all our business
-            partners to establish a clear disciplinary action procedure in line
-            with the local law. We will not work with factories whose employees
-            use abusive language, or practice corporal punishment, in the form
-            of mental or physical abuse or any coercive practice in any form
-            against workers.
-          </li>
-          <li>
-            <strong>Abusement & harassment:</strong> We will not work with any
-            factory or organization which engages abasement and harassment. It
-            is strongly prohibited as buyer Code of Conduct, as per our business
-            ethics as well as our Local Law.
-          </li>
-          <li>
-            <strong>Legal requirements:</strong> We expect all our business
-            partners to comply with the local laws applicable to the conduct of
-            their business.
-          </li>
-          <li>
-            <strong>Ethical standards:</strong> We will try to identify and work
-            with such organizations whose ethical standards are not divergent
-            from ours.
-          </li>
-          <li>
-            <strong>Working hours:</strong> We will prefer to work with business
-            partners who try and meet the 60 hour week limit. Whenever the
-            regular work hour limit is exceeded we expect the workers to be
-            compensated per the local law for the additional hours. We will
-            accept flexibility in scheduling work hours however we will not use
-            business partners, who on a regular and systematic basis work more
-            than the 60 hour week. Also, workers should be given one day off in
-            seven days.
-          </li>
-          <li>
-            <strong>Wages and Benefits:</strong> We will only work with such
-            business partners who compensate their workers as per the prevailing
-            law and provide all benefits legally due to them.
-          </li>
-          <li>
-            <strong>Freedom of Association:</strong> We respect the rights of
-            workers to join an association of their choice and their right to
-            Collective Bargaining. We will work with such business partners who
-            share this belief and they should ensure that workers who
-            participate or associate with such movements are not discriminated
-            against. No Punitive action should be taken against such workers for
-            being a part of such association or movement as long as they don’t
-            violate any of the local laws.
-          </li>
-          <li>
-            <strong>Discrimination:</strong> While being cognizant of cultural,
-            religious and other differences, we firmly believe that workers
-            should be given an opportunity to work based on their skills only.
-            Caste, Creed, Race etc: shall not be a part of the process used to
-            decide employability.
-          </li>
-          <li>
-            <strong>Unauthorized Subcontract:</strong> Unauthorized
-            subcontracting is considered a Zero Tolerance Violation. No vendor
-            shall subcontract any aspect of production without prior information
-            to and approval from our company. Any violation will result in
-            delisting of such factories.
-          </li>
-          <li>
-            <strong>Building and fire safety:</strong> We will want all our
-            business partners to ensure Building and fire safety as per the
-            local Law and buyers requirement.
-          </li>
-          <li>
-            <strong>Health & safety:</strong> We will engage only with such
-            factories who provide their workers a safe and healthy work
-            environment.
-          </li>
-          <li>
-            <strong>Environment:</strong> We will want all our business partners
-            to ensure that their work process does not affect the environment
-            adversely in any way. It is expected of all our business partners to
-            meet the legal requirement on all environmental aspects and
-            continuously strive to go beyond just meeting the law.
-          </li>
-        </ul>
-      </div>
+      {/* Compliance Points */}
+      <motion.div
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        {points.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={index}
+              variants={card}
+              className="bg-accent/90 p-6 rounded-2xl shadow-md border border-primary/20 flex flex-col gap-4 
+                         hover:shadow-xl hover:-translate-y-2 hover:border-primary/40 
+                         transition-all duration-500 ease-out backdrop-blur-sm"
+            >
+              <motion.div
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="bg-inverse p-3 rounded-full flex items-center justify-center shadow-inner">
+                  <Icon className="text-primary w-7 h-7" />
+                </div>
+                <h3 className="font-semibold text-lg text-heading">{item.title}</h3>
+              </motion.div>
+              <p className="text-[15px] text-body leading-relaxed">{item.text}</p>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }

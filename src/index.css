@@ -47,7 +47,9 @@
 .bg-neutral {
   background-color: var(--color-neutral);
 }
-
+.bg-inverse {
+  background-color: var(--color-text-primary);
+}
 .text-primary {
   color: var(--color-primary);
 }
