@@ -14,7 +14,7 @@ export default function AboutSection() {
           className="shadow-2xl rounded-xl overflow-hidden w-full md:w-1/2"
         >
           <img
-            src="https://www.fzfashionworld.com/wp-content/uploads/2024/07/WhatsApp-Image-2023-03-18-at-9.14.32-PM-1-1024x682.jpeg"
+            src="https://2ndtech.com/uploads/istockphoto-1163589059-612x612.jpg"
             alt="About"
             className="w-full h-full object-cover"
           />
